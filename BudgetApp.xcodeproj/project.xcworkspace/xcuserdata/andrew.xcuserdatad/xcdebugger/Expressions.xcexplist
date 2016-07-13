@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "AccountsTableViewController.tableView(UITableView, numberOfRowsInSection : Int) -&gt; Int:AccountsTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.accounts">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AccountsTableViewController.(fetchAuthors() -&gt; ()).(closure #1):AccountsTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.accounts">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
