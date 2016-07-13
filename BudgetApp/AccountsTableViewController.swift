@@ -10,8 +10,39 @@ import UIKit
 
 class AccountsTableViewController: UITableViewController {
     
+    /**
+        Shows a black loading view while fetchAccounts() is waiting
+     
+        - Returns: Void
+    */
+    func showLoadingView() {
+        if self.loadingView == nil {
+            // load layout
+            let loadingView = NSBundle.mainBundle().loadNibNamed("LoadingView", owner: self, options: nil).first as? UIView
+            // set frame equal to parent view frame (for sizing)
+            loadingView?.frame = self.view.frame
+            // allow auto resizing
+            loadingView?.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+            self.loadingView = loadingView
+        }
+        self.view.addSubview(self.loadingView!)
+    }
+    
+    func removeLoadingView() {
+        // quickly fade out loadingView, then destroy
+        UIView.animateWithDuration(0.5, animations: {
+            self.loadingView?.alpha = CGFloat(0)
+        }, completion: {(completion:Bool) -> Void in
+            self.loadingView?.removeFromSuperview()
+            self.loadingView = nil
+        })
+    }
+    
+    // MARK: - Properties
     var accounts: NSArray? = nil
-
+    var loadingView: UIView?
+    
+    // MARK: - Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,24 +69,32 @@ class AccountsTableViewController: UITableViewController {
         let config = NSURLSessionConfiguration.defaultSessionConfiguration()
         let session = NSURLSession(configuration: config)
         let url = NSURL(string: "http://andrew-mbp:5000/api/accounts")
+        
+        // show loading view
+        self.showLoadingView()
+        
         if url != nil {
             let req = NSURLRequest(URL: url!)
             let task = session.dataTaskWithRequest(req) {(data, response, error) in
-                print(data)
-                if data != nil {
-                    do {
-                        let arr = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.init(rawValue: 0)) as? NSArray
-                        if arr != nil {
-                            for obj in arr! {
-                                accounts.addObject(Account(obj: obj as! NSDictionary))
+                dispatch_async(dispatch_get_main_queue(), {
+                    print(data)
+                    if data != nil {
+                        do {
+                            let arr = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.init(rawValue: 0)) as? NSArray
+                            if arr != nil {
+                                for obj in arr! {
+                                    accounts.addObject(Account(obj: obj as! NSDictionary))
+                                }
+                                self.accounts = accounts
+                                self.tableView.reloadData()
+                                
                             }
-                            self.accounts = accounts
-                            self.tableView.reloadData()
+                        } catch let parseError {
+                            print("Error: \(parseError)")
                         }
-                    } catch let parseError {
-                        print("Error: \(parseError)")
                     }
-                }
+                    self.removeLoadingView() // remove loading view
+                })
             }
             task.resume()
         }
@@ -125,8 +164,9 @@ class AccountsTableViewController: UITableViewController {
 
     
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    /**
+        @brief Pass the selected Account model to DetailView controller
+    */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let index = self.tableView.indexPathForSelectedRow?.row
         if index != nil {

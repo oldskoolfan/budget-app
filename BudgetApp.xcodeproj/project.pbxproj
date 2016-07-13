@@ -18,6 +18,8 @@
 		493C24B51D340038009F7B6C /* BudgetAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493C24B41D340038009F7B6C /* BudgetAppTests.swift */; };
 		493C24C01D340038009F7B6C /* BudgetAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493C24BF1D340038009F7B6C /* BudgetAppUITests.swift */; };
 		49A04BAF1D35924C00DC901D /* AccountDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A04BAE1D35924C00DC901D /* AccountDetailViewController.swift */; };
+		49B1756E1D369BFA0002C760 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49B1756D1D369BFA0002C760 /* LoadingView.xib */; };
+		49B175721D369D260002C760 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B175711D369D260002C760 /* LoadingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		493C24BF1D340038009F7B6C /* BudgetAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetAppUITests.swift; sourceTree = "<group>"; };
 		493C24C11D340038009F7B6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49A04BAE1D35924C00DC901D /* AccountDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDetailViewController.swift; sourceTree = "<group>"; };
+		49B1756D1D369BFA0002C760 /* LoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoadingView.xib; path = ../LoadingView.xib; sourceTree = "<group>"; };
+		49B175711D369D260002C760 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +127,7 @@
 		493C249B1D340037009F7B6C /* BudgetApp */ = {
 			isa = PBXGroup;
 			children = (
+				49B1756F1D369C610002C760 /* Views */,
 				491888991D3531E700E33042 /* Controllers */,
 				491888961D352ECF00E33042 /* Models */,
 				493C249C1D340038009F7B6C /* AppDelegate.swift */,
@@ -151,6 +156,23 @@
 				493C24C11D340038009F7B6C /* Info.plist */,
 			);
 			path = BudgetAppUITests;
+			sourceTree = "<group>";
+		};
+		49B1756F1D369C610002C760 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				49B175701D369CF00002C760 /* nibs */,
+				49B175711D369D260002C760 /* LoadingView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		49B175701D369CF00002C760 /* nibs */ = {
+			isa = PBXGroup;
+			children = (
+				49B1756D1D369BFA0002C760 /* LoadingView.xib */,
+			);
+			name = nibs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,6 +283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				493C24AA1D340038009F7B6C /* LaunchScreen.storyboard in Resources */,
+				49B1756E1D369BFA0002C760 /* LoadingView.xib in Resources */,
 				493C24A71D340038009F7B6C /* Assets.xcassets in Resources */,
 				493C24A21D340038009F7B6C /* Main.storyboard in Resources */,
 			);
@@ -292,6 +315,7 @@
 				4918889B1D35322E00E33042 /* AccountsTableViewController.swift in Sources */,
 				49A04BAF1D35924C00DC901D /* AccountDetailViewController.swift in Sources */,
 				493C249F1D340038009F7B6C /* ViewController.swift in Sources */,
+				49B175721D369D260002C760 /* LoadingView.swift in Sources */,
 				493C249D1D340038009F7B6C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
